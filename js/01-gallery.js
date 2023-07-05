@@ -40,7 +40,15 @@ let instance;
     instance = basicLightbox.create(
       `
     <img src="${originalImg}" width="600" height="600">`,
-    
+      
+        {
+        onShow: () => {
+          window.addEventListener("keydown", closeModalByEsc);
+        },
+        onClose: () => {
+          window.removeEventListener("keydown", closeModalByEsc);
+        },
+      }
     );
     instance.show();
   };
